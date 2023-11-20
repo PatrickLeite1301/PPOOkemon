@@ -19,46 +19,38 @@ public class Jogo {
     private Analisador analisador;
     private Ambiente ambienteAtual;
 
-    /**
-     * Cria o jogo e incializa seu mapa interno.
-     */
+    // Inicializador do jogo
     public Jogo() {
         criarAmbientes();
         analisador = new Analisador();
     }
 
-    /**
-     * Cria todos os ambientes e liga as saidas deles
-     */
+    // Criando os ambientes
     private void criarAmbientes() {
-        Ambiente fora, anfiteatro, cantina, laboratorio, escritorio;
+        Ambiente entrada, fora, anfiteatro, cantina, laboratorio, escritorio;
 
         // cria os ambientes
         fora = new Ambiente("do lado de fora da entrada principal de uma universidade");
+        entrada = new Ambiente("aqui é a entrada do ginásio");
         anfiteatro = new Ambiente("no anfiteatro");
         cantina = new Ambiente("na cantina do campus");
         laboratorio = new Ambiente("no laboratorio de computacao");
         escritorio = new Ambiente("na sala de administracao dos computadores");
 
         // inicializa as saidas dos ambientes
-        fora.ajustarSaidas(null, anfiteatro, laboratorio, cantina);
-        anfiteatro.ajustarSaidas(null, null, null, fora);
-        cantina.ajustarSaidas(null, fora, null, null);
-        laboratorio.ajustarSaidas(fora, escritorio, null, null);
-        escritorio.ajustarSaidas(null, null, null, laboratorio);
+        // fora.ajustarSaidas(null, anfiteatro, laboratorio, cantina);
+        // fora.ajustarSaida("norte", escritorio);
+        // anfiteatro.ajustarSaidas(null, null, null, fora);
+        // cantina.ajustarSaidas(null, fora, null, null);
+        // laboratorio.ajustarSaidas(fora, escritorio, null, null);
+        // escritorio.ajustarSaidas(null, null, null, laboratorio);
 
-        ambienteAtual = fora; // o jogo comeca do lado de fora
+        ambienteAtual = entrada; // o jogo comeca pela entrada
     }
 
-    /**
-     * Rotina principal do jogo. Fica em loop ate terminar o jogo.
-     */
+    // Looping inicial
     public void jogar() {
         imprimirBoasVindas();
-
-        // Entra no loop de comando principal. Aqui nos repetidamente lemos
-        // comandos e os executamos ate o jogo terminar.
-
         boolean terminado = false;
         while (!terminado) {
             Comando comando = analisador.pegarComando();
@@ -67,16 +59,13 @@ public class Jogo {
         System.out.println("Obrigado por jogar. Ate mais!");
     }
 
-    /**
-     * Imprime a mensagem de abertura para o jogador.
-     */
     private void imprimirBoasVindas() {
         System.out.println();
-        System.out.println("Bem-vindo ao World of Zuul!");
-        System.out.println("World of Zuul eh um novo jogo de aventura, incrivelmente chato.");
+        System.out.println("Este e PPOOkemon!");
+        System.out.println("Um jogo completamente inovador e extremamente divertido.");
         System.out.println("Digite 'ajuda' se voce precisar de ajuda.");
         System.out.println();
-
+        imprimirSaidas();
     }
 
     /**
@@ -89,7 +78,7 @@ public class Jogo {
         boolean querSair = false;
 
         if (comando.ehDesconhecido()) {
-            System.out.println("Eu nao entendi o que voce disse...");
+            System.out.println("Nao foi possivel entender o que foi dito.");
             return false;
         }
 
@@ -107,45 +96,55 @@ public class Jogo {
 
     // Implementacoes dos comandos do usuario
 
-    /**
-     * Printe informacoes de ajuda.
-     * Aqui nos imprimimos algo bobo e enigmatico e a lista de
-     * palavras de comando
-     */
-    private void imprimirAjuda() {
-        System.out.println("Voce esta perdido. Voce esta sozinho. Voce caminha");
-        System.out.println("pela universidade.");
+    // Imprime as saidas disponiveis
+    private void imprimirSaidas() {
+        System.out.println("Voce esta " + ambienteAtual.getDescricao());
+
+        System.out.print("Saidas: ");
+        if (ambienteAtual.getSaida("norte") != null) {
+            System.out.print("norte ");
+        }
+        if (ambienteAtual.getSaida("leste") != null) {
+            System.out.print("leste ");
+        }
+        if (ambienteAtual.getSaida("sul") != null) {
+            System.out.print("sul ");
+        }
+        if (ambienteAtual.getSaida("oeste") != null) {
+            System.out.print("oeste ");
+        }
         System.out.println();
-        System.out.println("Suas palavras de comando sao:");
-        System.out.println("   ir sair ajuda");
     }
 
-    /**
-     * Tenta ir em uma direcao. Se existe uma saida entra no
-     * novo ambiente, caso contrario imprime mensagem de erro.
-     */
+    // Ajuda o usuario
+    private void imprimirAjuda() {
+        System.out.println("Voce precisa de ajuda?");
+        System.out.println("Suas palavras de comando sao:");
+        System.out.println("ir - sair - ajuda");
+    }
+
+    // Vai até um proximo ambiente
     private void irParaAmbiente(Comando comando) {
         if (!comando.temSegundaPalavra()) {
-            // se nao ha segunda palavra, nao sabemos pra onde ir...
+            // A segunda palavra indica o lugar
             System.out.println("Ir pra onde?");
             return;
         }
-
         String direcao = comando.getSegundaPalavra();
 
         // Tenta sair do ambiente atual
         Ambiente proximoAmbiente = null;
         if (direcao.equals("norte")) {
-            proximoAmbiente = ambienteAtual.saidaNorte;
+            proximoAmbiente = ambienteAtual.getSaida("norte");
         }
         if (direcao.equals("leste")) {
-            proximoAmbiente = ambienteAtual.saidaLeste;
+            proximoAmbiente = ambienteAtual.getSaida("leste");
         }
         if (direcao.equals("sul")) {
-            proximoAmbiente = ambienteAtual.saidaSul;
+            proximoAmbiente = ambienteAtual.getSaida("sul");
         }
         if (direcao.equals("oeste")) {
-            proximoAmbiente = ambienteAtual.saidaOeste;
+            proximoAmbiente = ambienteAtual.getSaida("oeste");
         }
 
         if (proximoAmbiente == null) {
@@ -153,19 +152,8 @@ public class Jogo {
         } else {
             ambienteAtual = proximoAmbiente;
 
+            imprimirSaidas();
         }
-    }
-
-    public void imprimirLocalizaçãoAtual(){
-        System.out.println("Voce esta " + ambienteAtual.getDescricao());
-    
-        System.out.print("Saidas: ");
-        
-        for(int d:){
-
-        }
-
-        System.out.println();
     }
 
     /**
@@ -179,7 +167,7 @@ public class Jogo {
             System.out.println("Sair o que?");
             return false;
         } else {
-            return true; // sinaliza que nos queremos sair
+            return true; // Fim de jogo
         }
     }
 }
