@@ -38,4 +38,15 @@ public class PalavrasComando
         // se chegamos aqui, a string nao foi encontrada nos comandos.
         return false;
     }
+
+    /**
+     * Imprime todos os comandos validos na tela.
+     */
+    public void mostrarTodos()
+    {
+        for(String comando : comandosValidos) {
+            System.out.print(comando + "  ");
+        }
+        System.out.println();
+    }
 }
