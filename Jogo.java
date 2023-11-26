@@ -34,30 +34,77 @@ public class Jogo
      */
     private void criarAmbientes()
     {
-        Ambiente fora, anfiteatro, cantina, laboratorio, escritorio;
+        Ambiente entrada, corredorEntrada, salaTreinador1, corredorEsquerda, salaSulCorredorEsquerdo, salaOesteCorredorEsquerdo, salaEasterEgg,
+        corredorDireita, salaTreinador2, salaTreinador3, salaVazia, salaPocao, salaTreinador4, salaTreinador5, corredorFinal, salaLider;
       
         // cria os ambientes
-        fora = new Ambiente("do lado de fora da entrada principal de uma universidade");
-        anfiteatro = new Ambiente("no anfiteatro");
-        cantina = new Ambiente("na cantina do campus");
-        laboratorio = new Ambiente("no laboratorio de computacao");
-        escritorio = new Ambiente("na sala de administracao dos computadores");
+        entrada = new Ambiente("entrada do ginásio");
+        corredorEntrada = new Ambiente("corredor longo perto da entrada");
+        salaTreinador1 = new Ambiente("primeira sala que você encontra no ginásio");
+        corredorEsquerda = new Ambiente("um corredor que parece se aproximar de uma parte não muito utilizada do ginásio");
+        salaSulCorredorEsquerdo = new Ambiente("primeira sala que você encontra no ginásio");
+        salaOesteCorredorEsquerdo = new Ambiente("um corredor que parece se aproximar de uma parte não muito utilizada do ginásio");
+        salaEasterEgg = new Ambiente("você percebe uma aura esquisita nesta sala, há a presença de alguem mais forte aqui");
+        corredorDireita = new Ambiente("um corredor que parece se aproximar das profundezas do ginásio");
+        salaTreinador2 = new Ambiente("uma sala mão muito larga com marcas de caixas no chão");
+        salaTreinador3 = new Ambiente("uma sala limpa e espaçosa");
+        salaVazia = new Ambiente("uma sala completamente vazia");
+        salaPocao = new Ambiente("uma sala repleta de caixas");
+        salaTreinador4 = new Ambiente("uma sala grande mas sem muita graça");
+        salaTreinador5  = new Ambiente("uma sala pequena e com bastante poeira");
+        corredorFinal = new Ambiente("uma escadaria que sobe até uma sala iluminada");
+        salaLider = new Ambiente("esta é claramente a sala do lider do ginasio");
 
         // inicializa as saidas dos ambientes
-        fora.ajustarSaidas("leste", anfiteatro);
-        fora.ajustarSaidas("sul", laboratorio);
-        fora.ajustarSaidas("oeste", cantina);
+        entrada.ajustarSaidas("norte", corredorEntrada);
 
-        anfiteatro.ajustarSaidas("oeste", fora);
+        corredorEntrada.ajustarSaidas("norte", salaTreinador1);
+        corredorEntrada.ajustarSaidas("sul", entrada);
 
-        cantina.ajustarSaidas("leste", fora);
+        salaTreinador1.ajustarSaidas("oeste", corredorEsquerda);
+        salaTreinador1.ajustarSaidas("leste", corredorDireita);
+        salaTreinador1.ajustarSaidas("sul", corredorEntrada);
 
-        laboratorio.ajustarSaidas("norte", fora);
-        laboratorio.ajustarSaidas("leste", escritorio);
+        corredorEsquerda.ajustarSaidas("oeste", salaOesteCorredorEsquerdo);
+        corredorEsquerda.ajustarSaidas("sul", salaSulCorredorEsquerdo);
+        corredorEsquerda.ajustarSaidas("leste", salaTreinador1);
+        
+        salaOesteCorredorEsquerdo.ajustarSaidas("norte", salaEasterEgg);
+        salaOesteCorredorEsquerdo.ajustarSaidas("leste", corredorEsquerda);
+        
+        salaSulCorredorEsquerdo.ajustarSaidas("norte", corredorEsquerda);
+        
+        salaEasterEgg.ajustarSaidas("sul", salaOesteCorredorEsquerdo);
 
-        escritorio.ajustarSaidas("oeste", laboratorio);
+        corredorDireita.ajustarSaidas("oeste", salaTreinador1);
+        corredorDireita.ajustarSaidas("sul", salaTreinador2);
+        corredorDireita.ajustarSaidas("norte", salaTreinador3);
+        corredorDireita.ajustarSaidas("leste", salaVazia);
 
-        ambienteAtual = fora;  // o jogo comeca do lado de fora
+        salaTreinador2.ajustarSaidas("norte", corredorDireita);
+        salaTreinador2.ajustarSaidas("sul", salaPocao);
+
+        salaPocao.ajustarSaidas("norte", salaTreinador2);
+
+        salaTreinador3.ajustarSaidas("leste", corredorFinal);
+        salaTreinador3.ajustarSaidas("oeste", salaTreinador4);
+        salaTreinador3.ajustarSaidas("sul", corredorDireita);
+
+        salaVazia.ajustarSaidas("oeste", corredorDireita);
+        salaVazia.ajustarSaidas("norte", corredorFinal);
+
+        salaTreinador4.ajustarSaidas("leste", salaTreinador3);
+
+        corredorFinal.ajustarSaidas("leste", salaTreinador5);
+        corredorFinal.ajustarSaidas("sul", salaVazia);
+        corredorFinal.ajustarSaidas("oeste", salaTreinador3);
+        corredorFinal.ajustarSaidas("norte", salaLider);
+
+        salaTreinador5.ajustarSaidas("oeste", corredorFinal);
+
+        salaLider.ajustarSaidas("sul", corredorFinal);
+
+        ambienteAtual = entrada;  // o jogo comeca do lado na entrada
     }
 
     /**
