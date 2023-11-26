@@ -9,6 +9,7 @@ public class Pokemon {
 
     //implementar ainda
     public Pokemon() {
+
     }
     
 }

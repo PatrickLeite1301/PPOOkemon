@@ -4,12 +4,22 @@ public class Ataque {
 
     private String nome;
     private int dano;
-    private double chanceDeAcerto;
+    private int chanceDeAcerto;
 
-    public Ataque(String nome, int dano, double chanceDeAcerto) {
+    public Ataque(String nome, int dano) {
         this.nome = nome;
         this.dano = dano;
-        this.chanceDeAcerto = chanceDeAcerto;
+        this.chanceDeAcerto = calcularAcerto();
+    }
+
+    private int calcularAcerto(){
+        if(dano == 20){
+            return 80;
+        }else if(dano == 50){
+            return 50;
+        }else{
+            return 30;
+        }
     }
     
 }
