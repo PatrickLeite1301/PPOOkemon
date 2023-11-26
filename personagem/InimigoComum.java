@@ -1,6 +1,6 @@
-package Personagem;
+package personagem;
 
-public class InimigoChefe extends Treinador{
+public class InimigoComum extends Treinador{
     @Override
     public int calculaVida() {
         return 0;

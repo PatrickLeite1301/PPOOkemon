@@ -1,4 +1,4 @@
-package Personagem;
+package personagem;
 
 public interface Personagem {
 
