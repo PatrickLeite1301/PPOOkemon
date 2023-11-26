@@ -7,11 +7,9 @@ public abstract class Treinador implements Personagem{
     private Pokemon pokemon;
 
     public Treinador(){
-        this.pokemon = new Pokemon();
+        this.pokemon = new Pokemon(calculaVida());
     }
 
     @Override
     public abstract int calculaVida();
-
-
 }

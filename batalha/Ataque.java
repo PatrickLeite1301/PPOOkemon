@@ -21,5 +21,10 @@ public class Ataque {
             return 30;
         }
     }
+
+    @Override
+    public String toString(){
+        return "Nome: " + nome + "Dano: " + dano;
+    }
     
 }
