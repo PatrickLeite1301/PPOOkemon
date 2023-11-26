@@ -45,7 +45,9 @@ public class Ambiente
         saidas.put(direcao, ambiente);
     }
 
-    //pega uma descricao mais breve
+    /**
+     * @return A descricao do ambiente.
+     */
     public String getDescricaoCurta()
     {
         return descricao;
@@ -70,14 +72,6 @@ public class Ambiente
         }
 
         return stringResposta;
-    }
-
-    /**
-     * @return A descricao do ambiente.
-     */
-    public String getDescricao()
-    {
-        return descricao;
     }
 
     /**

@@ -1,17 +1,14 @@
 package batalha;
-
-import java.util.List;
+import java.util.HashMap;
 
 public class Pokemon {
 
     private String nome;
-    private int pontosDeVida;
-    private List<Ataque> ataques;
+    private int vida;
+    private HashMap<Integer, Ataque> ataques;
 
-    public Pokemon(String nome, int pontosDeVida, List<Ataque> ataques) {
-        this.nome = nome;
-        this.pontosDeVida = pontosDeVida;
-        this.ataques = ataques;
+    //implementar ainda
+    public Pokemon() {
     }
     
 }
