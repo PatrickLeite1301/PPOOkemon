@@ -1,4 +1,4 @@
-package Interface;
+package gui;
 
 public class Janela {
 }
