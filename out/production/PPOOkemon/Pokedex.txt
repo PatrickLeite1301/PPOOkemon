@@ -1,0 +1,52 @@
+Bulbassauro;Investida;20;Chicote de Vinha;50;Pó Venenoso;70;Sono;20
+Charmander;Arranhão;20;Brasa;50;Encarar;70;Ira do Dragão;20
+Squirtle;Investida;20;Bolha;50;Retirada;70;Jato d'Água;20
+Pikachu;Choque do Trovão;20;Ataque Rápido;50;Onda de Trovão;70;Raio Trovão;20
+Jigglypuff;Bater;20;Rolagem;50;Cantar;70;Tapa Duplo;20
+Rattata;Investida;20;Cauda Rápida;50;Hiper Presa;70;Quebra-Crânio;20
+Ekans;Ataque Rápido;20;Mordida;50;Envolver;70;Ácido;20
+Sandshrew;Arranhão;20;Cutucada;50;Defesa de Ferro;70;Terremoto;20
+Nidoran♀;Investida;20;Ferrão Venenoso;50;Encarar;70;Fúria do Chifre;20
+Nidoran♂;Investida;20;Ferrão Venenoso;50;Encarar;70;Fúria do Chifre;20
+Clefairy;Charme;20;Encanto;50;Metrô;70;Toque Duplo;20
+Vulpix;Brasa;20;Ataque Rápido;50;Fúria das Chamas;70;Dança das Chamas;20
+Jigglypuff;Bater;20;Rolagem;50;Cantar;70;Tapa Duplo;20
+Zubat;Supersônico;20;Ataque de Asa;50;Mordida Venenosa;70;Confusão Sônica;20
+Oddish;Absorver;20;Ácido;50;Sono em Pó;70;Pó Venenoso;20
+Paras;Investida;20;Arranhão;50;Esporos;70;Corte X;20
+Venonat;Supersônico;20;Confusão;50;Poeira Venenosa;70;Psíquico;20
+Diglett;Arranhão;20;Cavar;50;Arenque;70;Terratemblor;20
+Meowth;Arranhão;20;Mordida;50;Covil;70;Corte das Garras;20
+Psyduck;Arranhão;20;Confusão;50;Hidro Bomba;70;Raio D'Água;20
+Mankey;Arranhão;20;Fúria;50;Covil;70;Soco Focalizado;20
+Growlithe;Brasa;20;Investida Rápida;50;Lança-chamas;70;Presas Flamejantes;20
+Poliwag;Bolha;20;Investida;50;Hidro Bomba;70;Hipnose;20
+Abra;Confusão;20;Ataque Rápido;50;Teleporte;70;Psíquico;20
+Machop;Soco Focalizado;20;Mega Chute;50;Karate Chop;70;Investida Dinâmica;20
+Bellsprout;Vinagre;20;Folha Navalha;50;Toxic;70;Crescimento;20
+Tentacool;Supersônico;20;Ácido;50;Mergulho;70;Chicote de Tentáculos;20
+Geodude;Investida;20;Rocha Polida;50;Lançamento de Pedras;70;Terremoto;20
+Ponyta;Investida;20;Ataque Rápido;50;Chama Furacão;70;Chute de Fogo;20
+Slowpoke;Investida;20;Confusão;50;Jato de Água;70;Meditação;20
+Magnemite;Supersônico;20;Onda de Choque;50;Magnet Bomb;70;Raio Tripartido;20
+Farfetch'd;Voadora;20;Ataque de Asa;50;Corte de Mato;70;Ataque Aéreo;20
+Doduo;Bicada;20;Ataque Furacão;50;Ataque Rápido;70;Perfurador;20
+Seel;Cabeçada;20;Ataque de Asa;50;Raio de Gelo;70;Aqua Jet;20
+Grimer;Lama;20;Ácido;50;Lançamento de Lama;70;Engolir;20
+Shellder;Golpe de Concha;20;Rapid Spin;50;Hidro Bomba;70;Explosão de Bolha;20
+Gastly;Hipnose;20;Investida Noturna;50;Bola Sombria;70;Pesadelo;20
+Onix;Investida;20;Rocha Polida;50;Tomba Rocha;70;Terremoto;20
+Drowzee;Hipnose;20;Confusão;50;Chicote de Pesadelo;70;Sonhos Assustadores;20
+Hypno;Raio de Confusão;20;Cabeçada;50;Bola Sombria;70;Psíquico;20
+Krabby;Bolha;20;Mordida;50;Martelada;70;Golpe de Concha;20
+Voltorb;Investida;20;Choque do Trovão;50;Explosão Autodestrutiva;70;Raio Eletrônico;20
+Exeggcute;Confusão;20;Bomba de Semente;50;Raio Solar;70;Ovo Explosivo;20
+Cubone;Osso Boomerangue;20;Investida;50;Terratemblor;70;Garra de Ossos;20
+Hitmonlee;Chute Alto;20;Mega Chute;50;Golpe Rodado;70;Ataque Giratório;20
+Hitmonchan;Soco Focalizado;20;Soco do Trovão;50;Ataque Rápido;70;Soco Focalizado Rápido;20
+Lickitung;Lamber;20;Ataque de Língua;50;Choque do Trovão;70;Golpe de Calda;20
+Koffing;Gás Venenoso;20;Bola de Fumaça;50;Auto-Destruição;70;Névoa Tóxica;20
+Rhyhorn;Investida;20;Chifre Furacão;50;Terra;70;Terremoto;20
+Chansey;Toque Duplo;20;Charme;50;Ataque Rápido;70;Bola Sombria;20
+Tangela;Vinagre;20;Chicote de Vinha;50;Ataque de Língua;70;Estrangulamento;20
+Kangaskhan;Mordida;20;Chicote de Cauda;50;Ataque de Asa;70;Corte Duplo;20
