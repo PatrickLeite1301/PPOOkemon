@@ -1,7 +1,4 @@
 import batalha.Pokemon;
-import personagem.Jogador;
-import personagem.Personagem;
-import personagem.Treinador;
 
 public class Programa {
 
