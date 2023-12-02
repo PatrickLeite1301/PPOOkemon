@@ -14,6 +14,14 @@ public class Pokemon {
         this.vida = vida;
     }
 
+    public int getVida(){
+        return vida;
+    }
+
+    public void setVida(int vida){
+        this.vida = vida;
+    }
+
     private HashMap<Integer,Ataque> iniciaAtaques(String[] campos){
         HashMap<Integer, Ataque> hm = new HashMap<>();
 
@@ -24,9 +32,18 @@ public class Pokemon {
         return hm;
     }
 
-    @Override
-    public String toString(){
-        return "Nome: "+ nome + "Vida: "+ vida + "Ataques : \n" + ataques.get(1).toString() + "\n" + ataques.get(2).toString() + "\n" + ataques.get(3).toString() + "\n" + ataques.get(4).toString() + "\n";
+
+    public String dadosPokemon(){
+        return "Pokemon: "+ nome + "\n" +
+                "Vida: "+ vida + "\n";
+    }
+
+    public String dadosAtaques(){
+        StringBuilder dados = new StringBuilder();
+        for(int i = 1; i <= 4; i++){
+            dados.append(i).append(" - ").append(ataques.get(i).toString()).append("\n");
+        }
+        return dados.toString();
     }
 
     

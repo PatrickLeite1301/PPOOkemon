@@ -131,8 +131,8 @@ public class Jogo
     private void imprimirBoasVindas()
     {
         System.out.println();
-        System.out.println("Bem-vindo ao World of Zuul!");
-        System.out.println("World of Zuul eh um novo jogo de aventura, incrivelmente chato.");
+        System.out.println("Bem-vindo ao PPOOkémon!");
+        System.out.println("PPOOkémon eh um novo jogo de acao e aventura, baseado em jogos da franquia original.");
         System.out.println("Digite 'ajuda' se voce precisar de ajuda.");
         System.out.println();
         System.out.println("Voce esta " + ambienteAtual.getDescricaoCompleta());

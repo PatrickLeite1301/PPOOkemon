@@ -4,12 +4,11 @@ public class Programa {
 
 	public static void main(String[] args) {
 //		Jogo jogo = new Jogo();
-//
 //		jogo.jogar();
 
-		Pokemon danilao = new Pokemon(500);
-
-		System.out.println(danilao.toString());
+		Pokemon p = new Pokemon(100);
+		System.out.println(p.dadosPokemon());
+		System.out.println(p.dadosAtaques());
 	}
 
 }
