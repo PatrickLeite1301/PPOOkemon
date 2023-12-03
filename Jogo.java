@@ -117,7 +117,8 @@ public class Jogo {
     // Rotina principal do jogo. Fica em loop ate terminar o jogo.
     public void jogar() {
         imprimirBoasVindas();
-        //telaPrincipal.definirAtaques(jogador); // Ainda não implementado
+        telaPrincipal.definirAtaques(jogador.getPokemon().dadosAtaques());
+        System.out.println(jogador.getPokemon().dadosAtaques());
         telaPrincipal.exibir(this);
     }
 

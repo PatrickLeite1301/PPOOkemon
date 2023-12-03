@@ -8,9 +8,10 @@ public abstract class Treinador implements Personagem{
     private Pokemon pokemon;
 
     public Treinador(){
-        this.pokemon = new Pokemon(0);
+        this.pokemon = new Pokemon(vidaBasePokemon);
     }
 
+    @Override
     public Pokemon getPokemon() {
         return pokemon;
     }
@@ -18,8 +19,4 @@ public abstract class Treinador implements Personagem{
     public int getVidaBasePokemon() {
         return vidaBasePokemon;
     }
-
-    @Override
-    public abstract int calculaVida();
-
 }

@@ -1,7 +1,5 @@
 package personagem;
 
-import batalha.Pokemon;
-
 public class InimigoComum extends Treinador{
 
     public InimigoComum(){

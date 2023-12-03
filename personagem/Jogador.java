@@ -1,7 +1,5 @@
 package personagem;
 
-import batalha.Pokemon;
-
 public class Jogador extends Treinador{
 
     private int qtdDeRevives;

@@ -13,14 +13,14 @@ public class TelaPrincipal {
     JButton botaoConfirmar;
     JTextArea saidaTela;
 
-    String ataques;
-
+    JTextArea ataques;
     JLabel mapa;
 
     public TelaPrincipal() {
         janela = new JFrame("PPOOkemon");
         campoComando = new JTextField();
         saidaTela = new JTextArea("");
+        ataques = new JTextArea("");
         botaoConfirmar = new JButton("Confirmar");
         mapa = new JLabel(new ImageIcon("./mapa.jpg"), SwingConstants.CENTER);
         montarJanela();
@@ -51,8 +51,10 @@ public class TelaPrincipal {
 
         // Configurações do painel Direito
         JPanel painelDireito = new JPanel();
-        painelDireito.setLayout(new FlowLayout());
-        painelDireito.add(new JLabel(ataques)); // Mudar o JLabel usado aqui
+        painelDireito.setLayout(new BoxLayout(painelDireito, BoxLayout.Y_AXIS));
+        painelDireito.add(new JLabel("Ataques: "));
+        painelDireito.add(ataques); // Mudar o JLabel usado aqui
+        ataques.setEditable(false);
         janela.add(painelDireito, BorderLayout.EAST);
 
         // Painel de entrada de comandos
@@ -70,8 +72,8 @@ public class TelaPrincipal {
         janela.add(painelInferior, BorderLayout.SOUTH);
     }
 
-    public void definirAtaques(String ataques) {
-        this.ataques = ataques;
+    public void definirAtaques(String ata) {
+        ataques.setText(ata);
     }
 
     public void definirTexto(String texto) {
