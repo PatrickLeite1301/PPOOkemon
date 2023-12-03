@@ -67,8 +67,8 @@ public class Analisador
     /**
      * Imprime uma lista de comandos validos na saida padrao.
      */
-    public void imprimirComandosValidos()
+    public String imprimirComandosValidos()
     {
-        palavrasDeComando.mostrarTodos();
+        return palavrasDeComando.mostrarTodos();
     }
 }
