@@ -132,7 +132,7 @@ public class TelaPrincipal {
         pokemonJogador.setText(poke);
     }
 
-    public void definirPokemonOponente(String poke){
+    public void definirPokemonOponente(String poke) {
         pokemonOponente.setText(poke);
     }
 
@@ -184,16 +184,18 @@ public class TelaPrincipal {
             } else if (act.getSource() == ataque4) {
                 resultado = Batalha.batalhar(jogo.getPokemonJogador(), jogo.getPokemonOponente(), 4);
             }
-            if (resultado == 1) {
-                System.out.println("Voce venceu!");
-                janelaComandos();
-            } else if (resultado == 2) {
-                System.out.println("Voce perdeu!");
-                janelaComandos();
-                definirTexto("Acabou o jogo, digite sair");
-            }
-            definirPokemon(jogo.getPokemonJogador().dadosPokemon());
+
+            definirTexto(jogo.getPokemonJogador().dadosPokemon());
             definirPokemonOponente(jogo.getPokemonOponente().dadosPokemon());
+            if (resultado == 1) {
+                janelaComandos();
+                JOptionPane.showMessageDialog(janela, "Você ganhou o duelo!");
+                jogo.apresentarAmbiente();
+                pokemonOponente.setText("");
+            } else if (resultado == 2) {
+                JOptionPane.showMessageDialog(janela, "Você perdeu!");
+                System.exit(0);
+            }
         }
     }
 }

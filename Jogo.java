@@ -47,27 +47,27 @@ public class Jogo {
                 corredorFinal, salaLider;
 
         // cria os ambientes
-        entrada = new Ambiente("entrada do ginásio");
-        corredorEntrada = new Ambiente("corredor longo perto da entrada");
-        salaTreinador1 = new Ambiente("primeira sala que você encontra no ginásio", new InimigoComum("Paula"));
+        entrada = new Ambiente("Entrada do ginásio");
+        corredorEntrada = new Ambiente("Corredor longo perto da entrada");
+        salaTreinador1 = new Ambiente("Primeira sala que você encontra no ginásio", new InimigoComum("Paula"));
         corredorEsquerda = new Ambiente(
-                "um corredor que parece se aproximar de uma parte não muito utilizada do ginásio");
-        salaSulCorredorEsquerdo = new Ambiente("uma sala que você encontra no meio do corredor",
+                "Um corredor que parece se aproximar de uma parte não muito utilizada do ginásio");
+        salaSulCorredorEsquerdo = new Ambiente("Uma sala que você encontra no meio do corredor",
                 new InimigoComum("Renato"));
-        salaOesteCorredorEsquerdo = new Ambiente("uma sala não muito utilizada do ginásio");
+        salaOesteCorredorEsquerdo = new Ambiente("Uma sala não muito utilizada do ginásio");
         salaEasterEgg = new Ambiente(
-                "você percebe uma aura esquisita nesta sala, há a presença de alguem mais forte aqui",
+                "Você percebe uma aura esquisita nesta sala, há a presença de alguem mais forte aqui",
                 new InimigoChefe("Joaquim"));
-        corredorDireita = new Ambiente("um corredor que parece se aproximar das profundezas do ginásio");
-        salaTreinador2 = new Ambiente("uma sala mão muito larga com marcas de caixas no chão",
+        corredorDireita = new Ambiente("Um corredor que parece se aproximar das profundezas do ginásio");
+        salaTreinador2 = new Ambiente("Uma sala mão muito larga com marcas de caixas no chão",
                 new InimigoComum("Denilson"));
-        salaTreinador3 = new Ambiente("uma sala limpa e espaçosa", new InimigoComum("Mayron"));
-        salaVazia = new Ambiente("uma sala completamente vazia");
-        salaPocao = new Ambiente("uma sala repleta de caixas");
-        salaTreinador4 = new Ambiente("uma sala grande mas sem muita graça", new InimigoComum("Ricardo Terra"));
-        salaTreinador5 = new Ambiente("uma sala pequena e com bastante poeira", new InimigoComum("Ana Paula"));
-        corredorFinal = new Ambiente("uma escadaria que sobe até uma sala iluminada");
-        salaLider = new Ambiente("esta é claramente a sala do lider do ginasio",
+        salaTreinador3 = new Ambiente("Uma sala limpa e espaçosa", new InimigoComum("Mayron"));
+        salaVazia = new Ambiente("Uma sala completamente vazia");
+        salaPocao = new Ambiente("Uma sala repleta de caixas");
+        salaTreinador4 = new Ambiente("Uma sala grande mas sem muita graça", new InimigoComum("Ricardo Terra"));
+        salaTreinador5 = new Ambiente("Uma sala pequena e com bastante poeira", new InimigoComum("Ana Paula"));
+        corredorFinal = new Ambiente("Uma escadaria que sobe até uma sala iluminada");
+        salaLider = new Ambiente("Esta é claramente a sala do lider do ginasio",
                 new InimigoChefe("Luiz Henrique Mershmann"));
 
         // inicializa as saidas dos ambientes
@@ -144,7 +144,8 @@ public class Jogo {
         boolean querSair = false;
 
         if (comando.ehDesconhecido()) {
-            telaPrincipal.definirTexto("Eu nao entendi o que voce disse...");
+            telaPrincipal
+                    .definirTexto("Eu nao entendi o que voce disse..." + "\n" + ambienteAtual.getDescricaoCompleta());
             return false;
         }
 
@@ -153,7 +154,7 @@ public class Jogo {
             imprimirAjuda();
         } else if (palavraDeComando.equals("ir")) {
             irParaAmbiente(comando);
-        }else if (palavraDeComando.equals("sair")) {
+        } else if (palavraDeComando.equals("sair")) {
             querSair = sair(comando);
         }
 
@@ -168,7 +169,7 @@ public class Jogo {
      */
     private void imprimirAjuda() {
         telaPrincipal.definirTexto("Voce esta perdido. Voce caminha pelo ginásio.\n" + "Suas palavras de comando sao: "
-                + analisador.imprimirComandosValidos());
+                + analisador.imprimirComandosValidos() + "\n" + ambienteAtual.getDescricaoCurta());
     }
 
     /**
@@ -192,15 +193,19 @@ public class Jogo {
             if (ambienteAtual.temTreinador()) {
                 iniciarBatalha();
             } else {
-                telaPrincipal.definirTexto(ambienteAtual.getDescricaoCompleta());
+                apresentarAmbiente();
             }
         }
     }
 
-    private void iniciarBatalha(){
+    public void apresentarAmbiente() {
+        telaPrincipal.definirTexto(ambienteAtual.getDescricaoCompleta());
+    }
+
+    private void iniciarBatalha() {
         Personagem oponente = ambienteAtual.getPersonagem();
-        telaPrincipal.definirTexto("\n" + oponente.getNome() + " te desafia para uma batalha! \n" 
-            + oponente.getNome() + " tem um " + oponente.getPokemon().getNome());
+        telaPrincipal.definirTexto("\n" + oponente.getNome() + " te desafia para uma batalha! \n"
+                + oponente.getNome() + " tem um " + oponente.getPokemon().getNome());
 
         telaPrincipal.definirPokemonOponente(oponente.getPokemon().dadosPokemon());
         telaPrincipal.janelaDeBatalha();
@@ -230,11 +235,11 @@ public class Jogo {
         }
     }
 
-    public Pokemon getPokemonJogador(){
+    public Pokemon getPokemonJogador() {
         return jogador.getPokemon();
     }
 
-    public Pokemon getPokemonOponente(){
+    public Pokemon getPokemonOponente() {
         return ambienteAtual.getPersonagem().getPokemon();
     }
 }
