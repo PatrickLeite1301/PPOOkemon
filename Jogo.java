@@ -202,6 +202,7 @@ public class Jogo {
         telaPrincipal.definirTexto("\n" + oponente.getNome() + " te desafia para uma batalha! \n" 
             + oponente.getNome() + " tem um " + oponente.getPokemon().getNome());
 
+        telaPrincipal.definirPokemonOponente(oponente.getPokemon().dadosPokemon());
         telaPrincipal.janelaDeBatalha();
     }
 

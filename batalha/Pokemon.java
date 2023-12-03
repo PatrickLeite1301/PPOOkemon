@@ -15,7 +15,7 @@ public class Pokemon {
     }
 
     public int getVida(){
-        return vida;
+        return this.vida;
     }
 
     public void setVida(int vida){
@@ -23,7 +23,7 @@ public class Pokemon {
     }
 
     public String getNome(){
-        return nome;
+        return this.nome;
     }
 
     private HashMap<Integer,Ataque> iniciaAtaques(String[] campos){
@@ -38,8 +38,8 @@ public class Pokemon {
 
 
     public String dadosPokemon(){
-        return "Pokemon: "+ nome + "\n" +
-                "Vida: "+ vida + "\n";
+        return "Pokemon: "+ this.nome + "\n" +
+                "Vida: "+ this.vida + "\n";
     }
 
     public String dadosAtaques(){

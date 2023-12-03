@@ -11,11 +11,11 @@ public class Batalha {
             return checaVencedor(jogador, oponente);
         }
         if(checaVencedor(jogador, oponente) == 0){
-            executarTurnoOponente(jogador, oponente);
+            executarTurnoOponente(oponente, jogador);
         } else {
             return checaVencedor(jogador, oponente);
         }
-        return 0;
+        return checaVencedor(jogador, oponente);
     }
 
     public static void executarTurnoJogador(Pokemon pokemon1, Pokemon pokemon2, int ataque){
@@ -29,9 +29,9 @@ public class Batalha {
 
     private static int checaVencedor(Pokemon jogador, Pokemon oponente){
         if(jogador.getVida() <= 0){
-            return 1;
-        } else if(oponente.getVida() <= 0){
             return 2;
+        } else if(oponente.getVida() <= 0){
+            return 1;
         }
         return 0;
     }

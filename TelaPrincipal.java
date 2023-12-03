@@ -17,7 +17,8 @@ public class TelaPrincipal {
     JButton ataque3;
     JButton ataque4;
     JTextArea saidaTela;
-    JTextArea pokemon;
+    JTextArea pokemonJogador;
+    JTextArea pokemonOponente;
     JPanel painelInferior;
 
     JTextArea ataques;
@@ -29,7 +30,8 @@ public class TelaPrincipal {
         saidaTela = new JTextArea("");
         ataques = new JTextArea("");
         painelInferior = new JPanel();
-        pokemon = new JTextArea("");
+        pokemonJogador = new JTextArea("");
+        pokemonOponente = new JTextArea("");
         botaoConfirmar = new JButton("Confirmar");
         mapa = new JLabel(new ImageIcon("./mapa.jpg"), SwingConstants.CENTER);
         montarJanela();
@@ -52,9 +54,11 @@ public class TelaPrincipal {
 
         // Configurações do painel Esquerdo
         JPanel painelEsquerdo = new JPanel();
-        painelEsquerdo.setLayout(new FlowLayout());
-        pokemon.setEditable(false);
-        painelEsquerdo.add(pokemon);
+        painelEsquerdo.setLayout(new BoxLayout(painelEsquerdo, BoxLayout.Y_AXIS));
+        pokemonJogador.setEditable(false);
+        pokemonOponente.setEditable(false);
+        painelEsquerdo.add(pokemonJogador);
+        painelEsquerdo.add(pokemonOponente);
         janela.add(painelEsquerdo, BorderLayout.WEST);
 
         // Configurações do painel Central
@@ -125,7 +129,11 @@ public class TelaPrincipal {
     }
 
     public void definirPokemon(String poke) {
-        pokemon.setText(poke);
+        pokemonJogador.setText(poke);
+    }
+
+    public void definirPokemonOponente(String poke){
+        pokemonOponente.setText(poke);
     }
 
     public void definirTexto(String texto) {
@@ -182,9 +190,10 @@ public class TelaPrincipal {
             } else if (resultado == 2) {
                 System.out.println("Voce perdeu!");
                 janelaComandos();
-                definirTexto("Acabou o jogo, digite SAIR");
+                definirTexto("Acabou o jogo, digite sair");
             }
             definirPokemon(jogo.getPokemonJogador().dadosPokemon());
+            definirPokemonOponente(jogo.getPokemonOponente().dadosPokemon());
         }
     }
 }

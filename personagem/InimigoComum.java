@@ -9,7 +9,7 @@ public class InimigoComum extends Treinador{
 
     @Override
     public int calculaVida() {
-        return super.getVidaBasePokemon() + 100;
+        return super.getVidaBasePokemon() - 300;
     }
 
 }
