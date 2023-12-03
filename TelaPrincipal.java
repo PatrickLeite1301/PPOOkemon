@@ -185,7 +185,7 @@ public class TelaPrincipal {
                 resultado = Batalha.batalhar(jogo.getPokemonJogador(), jogo.getPokemonOponente(), 4);
             }
 
-            definirTexto(jogo.getPokemonJogador().dadosPokemon());
+            definirPokemon(jogo.getPokemonJogador().dadosPokemon());
             definirPokemonOponente(jogo.getPokemonOponente().dadosPokemon());
             if (resultado == 1) {
                 janelaComandos();
