@@ -124,7 +124,7 @@ public class Jogo {
 
     // Mostra a mensagem de abertura na tela
     private void imprimirBoasVindas() {
-        telaPrincipal.setText("Bem-vindo ao PPOOkémon!\n"
+        telaPrincipal.definirTexto("Bem-vindo ao PPOOkémon!\n"
                 + "PPOOkémon eh um novo jogo de acao e aventura, baseado em jogos da franquia original.\n"
                 + "\n" + "Digite 'ajuda' se voce precisar de ajuda.\n" + "Voce esta "
                 + ambienteAtual.getDescricaoCompleta());
@@ -136,7 +136,7 @@ public class Jogo {
         boolean querSair = false;
 
         if (comando.ehDesconhecido()) {
-            telaPrincipal.attachText("Eu nao entendi o que voce disse...");
+            telaPrincipal.adicionarTexto("Eu nao entendi o que voce disse...");
             return false;
         }
 
@@ -160,7 +160,7 @@ public class Jogo {
      * palavras de comando
      */
     private void imprimirAjuda() {
-        telaPrincipal.attachText("Voce esta perdido. Voce esta sozinho. Voce caminha pela universidade.\n" + "Suas palavras de comando sao: " + analisador.imprimirComandosValidos());
+        telaPrincipal.adicionarTexto("Voce esta perdido. Voce esta sozinho. Voce caminha pela universidade.\n" + "Suas palavras de comando sao: " + analisador.imprimirComandosValidos());
     }
 
     /**

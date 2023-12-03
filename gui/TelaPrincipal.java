@@ -10,14 +10,14 @@ public class TelaPrincipal implements ActionListener {
     JFrame janela;
     JTextField campoComando;
     JButton botaoConfirmar;
-    JTextArea testando;
+    JTextArea saidaTela;
 
     JLabel mapa;
 
     public TelaPrincipal() {
         janela = new JFrame("PPOOkemon");
         campoComando = new JTextField();
-        testando = new JTextArea("");
+        saidaTela = new JTextArea("");
         botaoConfirmar = new JButton("Confirmar");
         botaoConfirmar.addActionListener(this);
         mapa = new JLabel(new ImageIcon("gui/mapa.jpg"), SwingConstants.CENTER);
@@ -30,7 +30,7 @@ public class TelaPrincipal implements ActionListener {
             String comandoDoUsuario = campoComando.getText();
             JOptionPane.showMessageDialog(janela, "Comando do usuario: " + comandoDoUsuario);
             campoComando.setText("");
-            testando.setText(comandoDoUsuario);
+            saidaTela.setText(comandoDoUsuario);
         }   
     }
 
@@ -71,16 +71,16 @@ public class TelaPrincipal implements ActionListener {
         // Configurações do painel Inferior
         JPanel painelInferior = new JPanel();
         painelInferior.setLayout(new BoxLayout(painelInferior, BoxLayout.Y_AXIS));
-        painelInferior.add(testando);
+        painelInferior.add(saidaTela);
         painelInferior.add(painelEntrada); // Painel inferior recebe o painel de entrada de comandos
         janela.add(painelInferior, BorderLayout.SOUTH);
     }
 
-    public void setText(String texto){
-        testando.setText(texto);
+    public void definirTexto(String texto){
+        saidaTela.setText(texto);
     }
 
-    public void attachText(String texto){
-        testando.append("\n" + texto);
+    public void adicionarTexto(String texto){
+        saidaTela.append("\n" + texto);
     }
 }
