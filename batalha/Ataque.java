@@ -14,31 +14,31 @@ public class Ataque {
         this.chanceDeAcerto = calcularAcerto();
     }
 
-    private int calcularAcerto(){
-        if(dano == 20){
+    private int calcularAcerto() {
+        if (dano == 20) {
             return 80;
-        }else if(dano == 50){
+        } else if (dano == 50) {
             return 50;
-        }else{
+        } else {
             return 30;
         }
     }
 
-    public int tentarAtacar(){
+    public int tentarAtacar() {
         Random random = new Random();
         int acerto = random.nextInt(100);
-        if(acerto <= chanceDeAcerto){
+        if (acerto <= chanceDeAcerto) {
             return dano;
-        }else{
+        } else {
             return 0;
         }
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Nome: " + nome + "\n" +
                 "Dano: " + dano + "\n" +
                 "Chance de acerto: " + chanceDeAcerto + "%" + "\n";
     }
-    
+
 }

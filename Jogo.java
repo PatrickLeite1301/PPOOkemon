@@ -134,6 +134,7 @@ public class Jogo {
     private void imprimirBoasVindas() {
         telaPrincipal.definirTexto("Bem-vindo ao PPOOkémon!\n"
                 + "PPOOkémon eh um novo jogo de acao e aventura, baseado em jogos da franquia original.\n"
+                + "Explore o ginásio, encontre o líder e seja um aluno vitorioso de PPOO!\n"
                 + ambienteAtual.getDescricaoCompleta());
     }
 

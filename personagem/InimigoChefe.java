@@ -1,8 +1,8 @@
 package personagem;
 
-public class InimigoChefe extends Treinador{
+public class InimigoChefe extends Treinador {
 
-    public InimigoChefe(String nome){
+    public InimigoChefe(String nome) {
         super(nome);
         this.getPokemon().setVida(calculaVida());
     }

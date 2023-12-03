@@ -2,7 +2,7 @@ package personagem;
 
 import batalha.Pokemon;
 
-public abstract class Treinador implements Personagem{
+public abstract class Treinador implements Personagem {
 
     private static final int vidaBasePokemon = 500;
 
@@ -10,7 +10,7 @@ public abstract class Treinador implements Personagem{
 
     private Pokemon pokemon;
 
-    public Treinador(String nome){
+    public Treinador(String nome) {
         this.nome = nome;
         this.pokemon = new Pokemon(vidaBasePokemon);
     }
@@ -25,7 +25,7 @@ public abstract class Treinador implements Personagem{
     }
 
     @Override
-    public String getNome(){
+    public String getNome() {
         return nome;
     }
 }

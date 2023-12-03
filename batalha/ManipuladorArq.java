@@ -3,7 +3,7 @@ package batalha;
 import java.io.*;
 import java.util.Random;
 
-public class ManipuladorArq{
+public class ManipuladorArq {
 
     public static String[] readTxtArq(String nomeArquivo) {
 
@@ -15,7 +15,7 @@ public class ManipuladorArq{
 
             int linhaSorteada = random.nextInt(50);
 
-            for(int i = 0; i < linhaSorteada; i++){
+            for (int i = 0; i < linhaSorteada; i++) {
                 linha = arq.readLine();
             }
 

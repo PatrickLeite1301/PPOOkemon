@@ -48,7 +48,7 @@ public class TelaPrincipal {
 
     private void montarJanela() {
         // Configurações da janela total
-        janela.setSize(1200, 700);
+        janela.setSize(1200, 800);
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         janela.setLayout(new BorderLayout());
 
@@ -65,6 +65,7 @@ public class TelaPrincipal {
         JPanel painelCentral = new JPanel();
         painelCentral.setLayout(new FlowLayout());
         painelCentral.add(mapa);
+        painelCentral.setSize(800, 610);
         janela.add(painelCentral, BorderLayout.CENTER);
 
         // Configurações do painel Direito
@@ -89,6 +90,8 @@ public class TelaPrincipal {
         ataque2 = new JButton("Ataque 2");
         ataque3 = new JButton("Ataque 3");
         ataque4 = new JButton("Ataque 4");
+
+        janela.setResizable(false);
     }
 
     public void janelaComandos() {
