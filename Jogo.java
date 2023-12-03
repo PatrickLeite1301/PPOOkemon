@@ -118,7 +118,7 @@ public class Jogo {
     public void jogar() {
         imprimirBoasVindas();
         telaPrincipal.definirAtaques(jogador.getPokemon().dadosAtaques());
-        System.out.println(jogador.getPokemon().dadosAtaques());
+        System.out.println(jogador.getPokemon().dadosPokemon());
         telaPrincipal.exibir(this);
     }
 

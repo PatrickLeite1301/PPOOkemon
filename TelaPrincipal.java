@@ -52,7 +52,11 @@ public class TelaPrincipal {
         // Configurações do painel Direito
         JPanel painelDireito = new JPanel();
         painelDireito.setLayout(new BoxLayout(painelDireito, BoxLayout.Y_AXIS));
-        painelDireito.add(new JLabel("Ataques: "));
+
+        //criando label de ataques
+        JLabel labelAtaques = new JLabel("Ataques: ");
+        labelAtaques.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        painelDireito.add(labelAtaques);
         painelDireito.add(ataques); // Mudar o JLabel usado aqui
         ataques.setEditable(false);
         janela.add(painelDireito, BorderLayout.EAST);

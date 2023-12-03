@@ -42,8 +42,8 @@ public class Pokemon {
         StringBuilder dados = new StringBuilder();
         for(int i = 1; i <= 4; i++){
             dados.append(i).append(" - ").append(ataques.get(i).toString()).append("\n");
-         }
-          return dados.toString();
+        }
+        return dados.toString();
     }
 
     
