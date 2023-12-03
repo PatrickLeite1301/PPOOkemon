@@ -198,7 +198,7 @@ public class Jogo {
         Comando comando = analisador.pegarComando(comandoTratado);
         terminado = processarComando(comando);
         if(terminado){
-            telaPrincipal.fechar();
+            System.exit(0);
         }
     }
 }
