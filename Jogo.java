@@ -1,3 +1,6 @@
+import personagem.Jogador;
+import personagem.Personagem;
+
 /**
  * Essa eh a classe principal da aplicacao "World of Zull".
  * "World of Zuul" eh um jogo de aventura muito simples, baseado em texto.
@@ -20,6 +23,8 @@ public class Jogo {
     private Ambiente ambienteAtual;
     private TelaPrincipal telaPrincipal;
 
+    private Personagem jogador;
+
     /**
      * Cria o jogo e incializa seu mapa interno.
      */
@@ -27,6 +32,7 @@ public class Jogo {
         criarAmbientes();
         analisador = new Analisador();
         telaPrincipal = new TelaPrincipal();
+        jogador = new Jogador();
     }
 
     /**
@@ -111,6 +117,7 @@ public class Jogo {
     // Rotina principal do jogo. Fica em loop ate terminar o jogo.
     public void jogar() {
         imprimirBoasVindas();
+        //telaPrincipal.definirAtaques(jogador); // Ainda não implementado
         telaPrincipal.exibir(this);
     }
 

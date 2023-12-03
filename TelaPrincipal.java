@@ -13,6 +13,8 @@ public class TelaPrincipal {
     JButton botaoConfirmar;
     JTextArea saidaTela;
 
+    String ataques;
+
     JLabel mapa;
 
     public TelaPrincipal() {
@@ -50,7 +52,7 @@ public class TelaPrincipal {
         // Configurações do painel Direito
         JPanel painelDireito = new JPanel();
         painelDireito.setLayout(new FlowLayout());
-        painelDireito.add(new JLabel("Ataques")); // Mudar o JLabel usado aqui
+        painelDireito.add(new JLabel(ataques)); // Mudar o JLabel usado aqui
         janela.add(painelDireito, BorderLayout.EAST);
 
         // Painel de entrada de comandos
@@ -66,6 +68,10 @@ public class TelaPrincipal {
         painelInferior.add(saidaTela);
         painelInferior.add(painelEntrada); // Painel inferior recebe o painel de entrada de comandos
         janela.add(painelInferior, BorderLayout.SOUTH);
+    }
+
+    public void definirAtaques(String ataques) {
+        this.ataques = ataques;
     }
 
     public void definirTexto(String texto) {

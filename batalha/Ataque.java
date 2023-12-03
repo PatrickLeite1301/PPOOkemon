@@ -24,7 +24,7 @@ public class Ataque {
 
     @Override
     public String toString(){
-        return "Ataque: " + nome + "\n" +
+        return "Nome: " + nome + "\n" +
                 "Dano: " + dano + "\n" +
                 "Chance de acerto: " + chanceDeAcerto + "%" + "\n";
     }
