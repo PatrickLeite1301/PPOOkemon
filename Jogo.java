@@ -1,3 +1,6 @@
+import batalha.Batalha;
+import personagem.InimigoChefe;
+import personagem.InimigoComum;
 import personagem.Jogador;
 import personagem.Personagem;
 
@@ -32,7 +35,7 @@ public class Jogo {
         criarAmbientes();
         analisador = new Analisador();
         telaPrincipal = new TelaPrincipal();
-        jogador = new Jogador();
+        jogador = new Jogador("Você");
     }
 
     /**
@@ -47,20 +50,20 @@ public class Jogo {
         // cria os ambientes
         entrada = new Ambiente("entrada do ginásio");
         corredorEntrada = new Ambiente("corredor longo perto da entrada");
-        salaTreinador1 = new Ambiente("primeira sala que você encontra no ginásio");
+        salaTreinador1 = new Ambiente("primeira sala que você encontra no ginásio", new InimigoComum("Paula"));
         corredorEsquerda = new Ambiente("um corredor que parece se aproximar de uma parte não muito utilizada do ginásio");
-        salaSulCorredorEsquerdo = new Ambiente("uma sala que você encontra no meio do corredor");
+        salaSulCorredorEsquerdo = new Ambiente("uma sala que você encontra no meio do corredor", new InimigoComum("Renato"));
         salaOesteCorredorEsquerdo = new Ambiente("uma sala não muito utilizada do ginásio");
-        salaEasterEgg = new Ambiente("você percebe uma aura esquisita nesta sala, há a presença de alguem mais forte aqui");
+        salaEasterEgg = new Ambiente("você percebe uma aura esquisita nesta sala, há a presença de alguem mais forte aqui", new InimigoChefe("Joaquim"));
         corredorDireita = new Ambiente("um corredor que parece se aproximar das profundezas do ginásio");
-        salaTreinador2 = new Ambiente("uma sala mão muito larga com marcas de caixas no chão");
-        salaTreinador3 = new Ambiente("uma sala limpa e espaçosa");
+        salaTreinador2 = new Ambiente("uma sala mão muito larga com marcas de caixas no chão", new InimigoComum("Denilson"));
+        salaTreinador3 = new Ambiente("uma sala limpa e espaçosa", new InimigoComum("Mayron"));
         salaVazia = new Ambiente("uma sala completamente vazia");
         salaPocao = new Ambiente("uma sala repleta de caixas");
-        salaTreinador4 = new Ambiente("uma sala grande mas sem muita graça");
-        salaTreinador5 = new Ambiente("uma sala pequena e com bastante poeira");
+        salaTreinador4 = new Ambiente("uma sala grande mas sem muita graça", new InimigoComum("Ricardo Terra"));
+        salaTreinador5 = new Ambiente("uma sala pequena e com bastante poeira", new InimigoComum("Ana Paula"));
         corredorFinal = new Ambiente("uma escadaria que sobe até uma sala iluminada");
-        salaLider = new Ambiente("esta é claramente a sala do lider do ginasio");
+        salaLider = new Ambiente("esta é claramente a sala do lider do ginasio", new InimigoChefe("Luiz Henrique Mershmann"));
 
         // inicializa as saidas dos ambientes
         entrada.ajustarSaidas("norte", corredorEntrada);
@@ -118,7 +121,6 @@ public class Jogo {
     public void jogar() {
         imprimirBoasVindas();
         telaPrincipal.definirAtaques(jogador.getPokemon().dadosAtaques());
-        System.out.println(jogador.getPokemon().dadosPokemon());
         telaPrincipal.exibir(this);
     }
 
@@ -126,7 +128,6 @@ public class Jogo {
     private void imprimirBoasVindas() {
         telaPrincipal.definirTexto("Bem-vindo ao PPOOkémon!\n"
                 + "PPOOkémon eh um novo jogo de acao e aventura, baseado em jogos da franquia original.\n"
-                + "Digite 'ajuda' se voce precisar de ajuda.\n" 
                 + ambienteAtual.getDescricaoCompleta());
     }
 
@@ -160,7 +161,7 @@ public class Jogo {
      * palavras de comando
      */
     private void imprimirAjuda() {
-        telaPrincipal.definirTexto("Voce esta perdido. Voce esta sozinho. Voce caminha pela universidade.\n" + "Suas palavras de comando sao: " + analisador.imprimirComandosValidos());
+        telaPrincipal.definirTexto("Voce esta perdido. Voce caminha pelo ginásio.\n" + "Suas palavras de comando sao: " + analisador.imprimirComandosValidos());
     }
 
     /**
@@ -170,7 +171,7 @@ public class Jogo {
     private void irParaAmbiente(Comando comando) {
         if (!comando.temSegundaPalavra()) {
             // se nao ha segunda palavra, nao sabemos pra onde ir...
-            telaPrincipal.adicionarTexto("Ir pra onde?");
+            telaPrincipal.definirTexto("Ir pra onde?" + "\n" + ambienteAtual.getDescricaoCompleta());
             return;
         }
         String direcao = comando.getSegundaPalavra();
@@ -182,6 +183,23 @@ public class Jogo {
         } else {
             ambienteAtual = proximoAmbiente;
             telaPrincipal.definirTexto(ambienteAtual.getDescricaoCompleta());
+            if(ambienteAtual.temTreinador()){
+                Personagem oponente = ambienteAtual.getPersonagem();
+                telaPrincipal.adicionarTexto("\n" + oponente.getNome() + " te desafia para uma batalha! \n"
+                        + oponente.getNome() + " tem um " + oponente.getPokemon().getNome());
+
+                boolean controlaTurno = true;
+                while (jogador.getPokemon().getVida() >=0 && oponente.getPokemon().getVida() >= 0){
+
+                    if (controlaTurno) {
+                        Batalha.executarTurnoJogador(jogador.getPokemon(), oponente.getPokemon(), 1);
+                    } else {
+                        Batalha.executarTurnoOponente(oponente.getPokemon(), jogador.getPokemon());
+                    }
+
+                    controlaTurno = !controlaTurno;
+                }
+            }
         }
 
     }

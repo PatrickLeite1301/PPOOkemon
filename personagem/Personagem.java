@@ -6,4 +6,6 @@ public interface Personagem {
 
     int calculaVida();
     Pokemon getPokemon();
+
+    String getNome();
 }

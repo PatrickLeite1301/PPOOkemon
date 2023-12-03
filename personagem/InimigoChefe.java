@@ -2,7 +2,8 @@ package personagem;
 
 public class InimigoChefe extends Treinador{
 
-    public InimigoChefe(){
+    public InimigoChefe(String nome){
+        super(nome);
         this.getPokemon().setVida(calculaVida());
     }
 

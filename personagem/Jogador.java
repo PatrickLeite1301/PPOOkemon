@@ -4,7 +4,8 @@ public class Jogador extends Treinador{
 
     private int qtdDeRevives;
 
-    public Jogador(){
+    public Jogador(String nome){
+        super(nome);
         this.getPokemon().setVida(calculaVida());
         qtdDeRevives = 0;
     }

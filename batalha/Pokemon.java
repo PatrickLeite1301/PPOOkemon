@@ -22,6 +22,10 @@ public class Pokemon {
         this.vida = vida;
     }
 
+    public String getNome(){
+        return nome;
+    }
+
     private HashMap<Integer,Ataque> iniciaAtaques(String[] campos){
         HashMap<Integer, Ataque> hm = new HashMap<>();
 
@@ -44,6 +48,12 @@ public class Pokemon {
             dados.append(i).append(" - ").append(ataques.get(i).toString()).append("\n");
         }
         return dados.toString();
+    }
+
+    public void atacar(int ataque, Pokemon pokemon){
+        if(ataque>=1 && ataque<=4){
+            pokemon.setVida(pokemon.getVida() - this.ataques.get(ataque).tentarAtacar());
+        }
     }
 
     

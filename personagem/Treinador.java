@@ -5,9 +5,13 @@ import batalha.Pokemon;
 public abstract class Treinador implements Personagem{
 
     private static final int vidaBasePokemon = 500;
+
+    private String nome;
+
     private Pokemon pokemon;
 
-    public Treinador(){
+    public Treinador(String nome){
+        this.nome = nome;
         this.pokemon = new Pokemon(vidaBasePokemon);
     }
 
@@ -18,5 +22,10 @@ public abstract class Treinador implements Personagem{
 
     public int getVidaBasePokemon() {
         return vidaBasePokemon;
+    }
+
+    @Override
+    public String getNome(){
+        return nome;
     }
 }

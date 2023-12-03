@@ -1,5 +1,7 @@
 package batalha;
 
+import java.util.Random;
+
 public class Ataque {
 
     private String nome;
@@ -19,6 +21,16 @@ public class Ataque {
             return 50;
         }else{
             return 30;
+        }
+    }
+
+    public int tentarAtacar(){
+        Random random = new Random();
+        int acerto = random.nextInt(100);
+        if(acerto <= chanceDeAcerto){
+            return dano;
+        }else{
+            return 0;
         }
     }
 

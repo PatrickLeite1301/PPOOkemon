@@ -1,3 +1,5 @@
+import personagem.Personagem;
+
 import java.util.HashMap;
 import java.util.Set;
 
@@ -21,6 +23,8 @@ public class Ambiente
     private String descricao;
     private HashMap<String, Ambiente> saidas;
 
+    private Personagem treinadorInimigo;
+
     /**
      * Cria um ambiente com a "descricao" passada. Inicialmente, ele
      * nao tem saidas. "descricao" eh algo como "uma cozinha" ou
@@ -30,10 +34,18 @@ public class Ambiente
      * "um jardim aberto".
      * @param descricao A descricao do ambiente.
      */
-    public Ambiente(String descricao) 
+    public Ambiente(String descricao)
     {
         this.descricao = descricao;
         saidas = new HashMap<>();
+    }
+
+    //construtor pra quando tiver treinador inimigo
+    public Ambiente(String descricao, Personagem treinadorInimigo)
+    {
+        this.descricao = descricao;
+        saidas = new HashMap<>();
+        this.treinadorInimigo = treinadorInimigo;
     }
 
     /**
@@ -56,7 +68,7 @@ public class Ambiente
     //pega uma descricao mais completa
     public String getDescricaoCompleta()
     {
-        return descricao + ".\n" + getExitsString();
+        return "Digite 'ajuda' se voce precisar de ajuda.\n"+ descricao + ".\n" + getExitsString();
     }
 
     /**
@@ -84,6 +96,14 @@ public class Ambiente
     public Ambiente getSaida(String direcao)
     {
         return saidas.get(direcao);
+    }
+
+    public boolean temTreinador(){
+        return treinadorInimigo != null;
+    }
+
+    public Personagem getPersonagem(){
+        return treinadorInimigo;
     }
 
 }
