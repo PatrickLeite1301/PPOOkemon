@@ -46,7 +46,7 @@ public class PalavrasComando
     {
         String comandos = "";
         for(String comando : comandosValidos) {
-            comandos += comando + " ";
+            comandos += comando + "   ";
         }
         return comandos;
     }

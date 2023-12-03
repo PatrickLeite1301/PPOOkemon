@@ -1,4 +1,4 @@
-import batalha.Batalha;
+import batalha.Pokemon;
 import personagem.InimigoChefe;
 import personagem.InimigoComum;
 import personagem.Jogador;
@@ -25,7 +25,6 @@ public class Jogo {
     private Analisador analisador;
     private Ambiente ambienteAtual;
     private TelaPrincipal telaPrincipal;
-
     private Personagem jogador;
 
     /**
@@ -51,19 +50,25 @@ public class Jogo {
         entrada = new Ambiente("entrada do ginásio");
         corredorEntrada = new Ambiente("corredor longo perto da entrada");
         salaTreinador1 = new Ambiente("primeira sala que você encontra no ginásio", new InimigoComum("Paula"));
-        corredorEsquerda = new Ambiente("um corredor que parece se aproximar de uma parte não muito utilizada do ginásio");
-        salaSulCorredorEsquerdo = new Ambiente("uma sala que você encontra no meio do corredor", new InimigoComum("Renato"));
+        corredorEsquerda = new Ambiente(
+                "um corredor que parece se aproximar de uma parte não muito utilizada do ginásio");
+        salaSulCorredorEsquerdo = new Ambiente("uma sala que você encontra no meio do corredor",
+                new InimigoComum("Renato"));
         salaOesteCorredorEsquerdo = new Ambiente("uma sala não muito utilizada do ginásio");
-        salaEasterEgg = new Ambiente("você percebe uma aura esquisita nesta sala, há a presença de alguem mais forte aqui", new InimigoChefe("Joaquim"));
+        salaEasterEgg = new Ambiente(
+                "você percebe uma aura esquisita nesta sala, há a presença de alguem mais forte aqui",
+                new InimigoChefe("Joaquim"));
         corredorDireita = new Ambiente("um corredor que parece se aproximar das profundezas do ginásio");
-        salaTreinador2 = new Ambiente("uma sala mão muito larga com marcas de caixas no chão", new InimigoComum("Denilson"));
+        salaTreinador2 = new Ambiente("uma sala mão muito larga com marcas de caixas no chão",
+                new InimigoComum("Denilson"));
         salaTreinador3 = new Ambiente("uma sala limpa e espaçosa", new InimigoComum("Mayron"));
         salaVazia = new Ambiente("uma sala completamente vazia");
         salaPocao = new Ambiente("uma sala repleta de caixas");
         salaTreinador4 = new Ambiente("uma sala grande mas sem muita graça", new InimigoComum("Ricardo Terra"));
         salaTreinador5 = new Ambiente("uma sala pequena e com bastante poeira", new InimigoComum("Ana Paula"));
         corredorFinal = new Ambiente("uma escadaria que sobe até uma sala iluminada");
-        salaLider = new Ambiente("esta é claramente a sala do lider do ginasio", new InimigoChefe("Luiz Henrique Mershmann"));
+        salaLider = new Ambiente("esta é claramente a sala do lider do ginasio",
+                new InimigoChefe("Luiz Henrique Mershmann"));
 
         // inicializa as saidas dos ambientes
         entrada.ajustarSaidas("norte", corredorEntrada);
@@ -121,6 +126,7 @@ public class Jogo {
     public void jogar() {
         imprimirBoasVindas();
         telaPrincipal.definirAtaques(jogador.getPokemon().dadosAtaques());
+        telaPrincipal.definirPokemon(jogador.getPokemon().dadosPokemon());
         telaPrincipal.exibir(this);
     }
 
@@ -131,7 +137,8 @@ public class Jogo {
                 + ambienteAtual.getDescricaoCompleta());
     }
 
-    // Dado um comando, processa-o (ou seja, executa-o). @param comando é o Comando a ser processado. @return true se o comando finaliza o jogo.
+    // Dado um comando, processa-o (ou seja, executa-o). @param comando é o Comando
+    // a ser processado. @return true se o comando finaliza o jogo.
     // Precisa ajustar
     private boolean processarComando(Comando comando) {
         boolean querSair = false;
@@ -146,13 +153,12 @@ public class Jogo {
             imprimirAjuda();
         } else if (palavraDeComando.equals("ir")) {
             irParaAmbiente(comando);
-        } else if (palavraDeComando.equals("sair")) {
+        }else if (palavraDeComando.equals("sair")) {
             querSair = sair(comando);
         }
 
         return querSair;
     }
-
 
     // Implementacoes dos comandos do usuario
     /**
@@ -161,7 +167,8 @@ public class Jogo {
      * palavras de comando
      */
     private void imprimirAjuda() {
-        telaPrincipal.definirTexto("Voce esta perdido. Voce caminha pelo ginásio.\n" + "Suas palavras de comando sao: " + analisador.imprimirComandosValidos());
+        telaPrincipal.definirTexto("Voce esta perdido. Voce caminha pelo ginásio.\n" + "Suas palavras de comando sao: "
+                + analisador.imprimirComandosValidos());
     }
 
     /**
@@ -174,34 +181,28 @@ public class Jogo {
             telaPrincipal.definirTexto("Ir pra onde?" + "\n" + ambienteAtual.getDescricaoCompleta());
             return;
         }
-        String direcao = comando.getSegundaPalavra();
 
+        String direcao = comando.getSegundaPalavra();
         // Tenta sair do ambiente atual
         Ambiente proximoAmbiente = ambienteAtual.getSaida(direcao);
         if (proximoAmbiente == null) {
             telaPrincipal.adicionarTexto("Nao ha uma porta!");
         } else {
             ambienteAtual = proximoAmbiente;
-            telaPrincipal.definirTexto(ambienteAtual.getDescricaoCompleta());
-            if(ambienteAtual.temTreinador()){
-                Personagem oponente = ambienteAtual.getPersonagem();
-                telaPrincipal.adicionarTexto("\n" + oponente.getNome() + " te desafia para uma batalha! \n"
-                        + oponente.getNome() + " tem um " + oponente.getPokemon().getNome());
-
-                boolean controlaTurno = true;
-                while (jogador.getPokemon().getVida() >=0 && oponente.getPokemon().getVida() >= 0){
-
-                    if (controlaTurno) {
-                        Batalha.executarTurnoJogador(jogador.getPokemon(), oponente.getPokemon(), 1);
-                    } else {
-                        Batalha.executarTurnoOponente(oponente.getPokemon(), jogador.getPokemon());
-                    }
-
-                    controlaTurno = !controlaTurno;
-                }
+            if (ambienteAtual.temTreinador()) {
+                iniciarBatalha();
+            } else {
+                telaPrincipal.definirTexto(ambienteAtual.getDescricaoCompleta());
             }
         }
+    }
 
+    private void iniciarBatalha(){
+        Personagem oponente = ambienteAtual.getPersonagem();
+        telaPrincipal.definirTexto("\n" + oponente.getNome() + " te desafia para uma batalha! \n" 
+            + oponente.getNome() + " tem um " + oponente.getPokemon().getNome());
+
+        telaPrincipal.janelaDeBatalha();
     }
 
     /**
@@ -219,12 +220,20 @@ public class Jogo {
         }
     }
 
-    public void tratarComando(String comandoTratado){
+    public void tratarComando(String comandoTratado) {
         boolean terminado = false;
         Comando comando = analisador.pegarComando(comandoTratado);
         terminado = processarComando(comando);
-        if(terminado){
+        if (terminado) {
             System.exit(0);
         }
+    }
+
+    public Pokemon getPokemonJogador(){
+        return jogador.getPokemon();
+    }
+
+    public Pokemon getPokemonOponente(){
+        return ambienteAtual.getPersonagem().getPokemon();
     }
 }
