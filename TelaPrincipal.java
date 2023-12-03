@@ -1,11 +1,12 @@
-package gui;
+
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TelaPrincipal implements ActionListener {
+public class TelaPrincipal {
 
     JFrame janela;
     JTextField campoComando;
@@ -19,23 +20,13 @@ public class TelaPrincipal implements ActionListener {
         campoComando = new JTextField();
         saidaTela = new JTextArea("");
         botaoConfirmar = new JButton("Confirmar");
-        botaoConfirmar.addActionListener(this);
-        mapa = new JLabel(new ImageIcon("gui/mapa.jpg"), SwingConstants.CENTER);
+        mapa = new JLabel(new ImageIcon("./mapa.jpg"), SwingConstants.CENTER);
         montarJanela();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent act) {
-        if(act.getSource() == botaoConfirmar){
-            String comandoDoUsuario = campoComando.getText();
-            JOptionPane.showMessageDialog(janela, "Comando do usuario: " + comandoDoUsuario);
-            campoComando.setText("");
-            saidaTela.setText(comandoDoUsuario);
-        }   
-    }
-
-    public void exibir() {
+    public void exibir(Jogo jogo) {
         janela.setVisible(true);
+        botaoConfirmar.addActionListener(new BotaoConfirmarOuvinte(jogo));
     }
 
     private void montarJanela() {
@@ -61,13 +52,14 @@ public class TelaPrincipal implements ActionListener {
         painelDireito.setLayout(new FlowLayout());
         painelDireito.add(new JLabel("Ataques")); // Mudar o JLabel usado aqui
         janela.add(painelDireito, BorderLayout.EAST);
-        
+
         // Painel de entrada de comandos
         JPanel painelEntrada = new JPanel();
         painelEntrada.setLayout(new BoxLayout(painelEntrada, BoxLayout.X_AXIS));
+        saidaTela.setEditable(false); // Fazendo que a area de texto nao seja editavel
         painelEntrada.add(campoComando);
         painelEntrada.add(botaoConfirmar);
-        
+
         // Configurações do painel Inferior
         JPanel painelInferior = new JPanel();
         painelInferior.setLayout(new BoxLayout(painelInferior, BoxLayout.Y_AXIS));
@@ -76,11 +68,31 @@ public class TelaPrincipal implements ActionListener {
         janela.add(painelInferior, BorderLayout.SOUTH);
     }
 
-    public void definirTexto(String texto){
+    public void definirTexto(String texto) {
         saidaTela.setText(texto);
     }
 
-    public void adicionarTexto(String texto){
+    public void adicionarTexto(String texto) {
         saidaTela.append("\n" + texto);
+    }
+
+    public void fechar(){
+        janela.setVisible(false);
+    }
+
+    private class BotaoConfirmarOuvinte implements ActionListener {
+        Jogo jogo;
+        public BotaoConfirmarOuvinte(Jogo jogo){
+            this.jogo = jogo;
+        }
+        
+        @Override
+        public void actionPerformed(ActionEvent act) {
+            if (act.getSource() == botaoConfirmar) {
+                String comandoDoUsuario = campoComando.getText();
+                jogo.tratarComando(comandoDoUsuario);
+                campoComando.setText("");
+            }
+        }
     }
 }

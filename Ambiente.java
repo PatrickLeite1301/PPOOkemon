@@ -56,7 +56,7 @@ public class Ambiente
     //pega uma descricao mais completa
     public String getDescricaoCompleta()
     {
-        return "Voce esta " + descricao + ".\n" + getExitsString();
+        return descricao + ".\n" + getExitsString();
     }
 
     /**

@@ -1,5 +1,3 @@
-import gui.TelaPrincipal;
-
 /**
  * Essa eh a classe principal da aplicacao "World of Zull".
  * "World of Zuul" eh um jogo de aventura muito simples, baseado em texto.
@@ -45,8 +43,8 @@ public class Jogo {
         corredorEntrada = new Ambiente("corredor longo perto da entrada");
         salaTreinador1 = new Ambiente("primeira sala que você encontra no ginásio");
         corredorEsquerda = new Ambiente("um corredor que parece se aproximar de uma parte não muito utilizada do ginásio");
-        salaSulCorredorEsquerdo = new Ambiente("primeira sala que você encontra no ginásio");
-        salaOesteCorredorEsquerdo = new Ambiente("um corredor que parece se aproximar de uma parte não muito utilizada do ginásio");
+        salaSulCorredorEsquerdo = new Ambiente("uma sala que você encontra no meio do corredor");
+        salaOesteCorredorEsquerdo = new Ambiente("uma sala não muito utilizada do ginásio");
         salaEasterEgg = new Ambiente("você percebe uma aura esquisita nesta sala, há a presença de alguem mais forte aqui");
         corredorDireita = new Ambiente("um corredor que parece se aproximar das profundezas do ginásio");
         salaTreinador2 = new Ambiente("uma sala mão muito larga com marcas de caixas no chão");
@@ -113,20 +111,14 @@ public class Jogo {
     // Rotina principal do jogo. Fica em loop ate terminar o jogo.
     public void jogar() {
         imprimirBoasVindas();
-        telaPrincipal.exibir();
-
-        boolean terminado = false;
-        while (!terminado) {
-            Comando comando = analisador.pegarComando();
-            terminado = processarComando(comando);
-        }
+        telaPrincipal.exibir(this);
     }
 
     // Mostra a mensagem de abertura na tela
     private void imprimirBoasVindas() {
         telaPrincipal.definirTexto("Bem-vindo ao PPOOkémon!\n"
                 + "PPOOkémon eh um novo jogo de acao e aventura, baseado em jogos da franquia original.\n"
-                + "\n" + "Digite 'ajuda' se voce precisar de ajuda.\n" + "Voce esta "
+                + "Digite 'ajuda' se voce precisar de ajuda.\n" 
                 + ambienteAtual.getDescricaoCompleta());
     }
 
@@ -136,7 +128,7 @@ public class Jogo {
         boolean querSair = false;
 
         if (comando.ehDesconhecido()) {
-            telaPrincipal.adicionarTexto("Eu nao entendi o que voce disse...");
+            telaPrincipal.definirTexto("Eu nao entendi o que voce disse...");
             return false;
         }
 
@@ -160,7 +152,7 @@ public class Jogo {
      * palavras de comando
      */
     private void imprimirAjuda() {
-        telaPrincipal.adicionarTexto("Voce esta perdido. Voce esta sozinho. Voce caminha pela universidade.\n" + "Suas palavras de comando sao: " + analisador.imprimirComandosValidos());
+        telaPrincipal.definirTexto("Voce esta perdido. Voce esta sozinho. Voce caminha pela universidade.\n" + "Suas palavras de comando sao: " + analisador.imprimirComandosValidos());
     }
 
     /**
@@ -170,20 +162,18 @@ public class Jogo {
     private void irParaAmbiente(Comando comando) {
         if (!comando.temSegundaPalavra()) {
             // se nao ha segunda palavra, nao sabemos pra onde ir...
-            System.out.println("Ir pra onde?");
+            telaPrincipal.adicionarTexto("Ir pra onde?");
             return;
         }
-
         String direcao = comando.getSegundaPalavra();
 
         // Tenta sair do ambiente atual
         Ambiente proximoAmbiente = ambienteAtual.getSaida(direcao);
-
         if (proximoAmbiente == null) {
-            System.out.println("Nao ha uma porta!");
+            telaPrincipal.adicionarTexto("Nao ha uma porta!");
         } else {
             ambienteAtual = proximoAmbiente;
-            System.out.println(ambienteAtual.getDescricaoCompleta());
+            telaPrincipal.definirTexto(ambienteAtual.getDescricaoCompleta());
         }
 
     }
@@ -196,10 +186,19 @@ public class Jogo {
      */
     private boolean sair(Comando comando) {
         if (comando.temSegundaPalavra()) {
-            System.out.println("Sair o que?");
+            telaPrincipal.adicionarTexto("Sair o que?");
             return false;
         } else {
             return true; // sinaliza que nos queremos sair
+        }
+    }
+
+    public void tratarComando(String comandoTratado){
+        boolean terminado = false;
+        Comando comando = analisador.pegarComando(comandoTratado);
+        terminado = processarComando(comando);
+        if(terminado){
+            telaPrincipal.fechar();
         }
     }
 }
