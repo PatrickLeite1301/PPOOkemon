@@ -209,11 +209,18 @@ public class Jogo {
      */
     private void iniciarBatalha() {
         Personagem oponente = ambienteAtual.getPersonagem();
-        telaPrincipal.definirTexto("\n" + oponente.getNome() + " te desafia para uma batalha! \n"
+        if(oponente.getPokemon().getVida() <= 0){
+            telaPrincipal.definirTexto("\n" + oponente.getNome() + " já foi derrotado e esta desolado!"
+            + "\n" + ambienteAtual.getDescricaoCompleta());
+            return;
+        }else{
+            telaPrincipal.definirTexto("\n" + oponente.getNome() + " te desafia para uma batalha! \n"
                 + oponente.getNome() + " tem um " + oponente.getPokemon().getNome());
 
-        telaPrincipal.definirPokemonOponente(oponente.getPokemon().dadosPokemon());
-        telaPrincipal.janelaDeBatalha();
+            telaPrincipal.definirPokemonOponente(oponente.getPokemon().dadosPokemon());
+            telaPrincipal.janelaDeBatalha();
+        }
+        
     }
 
     /**
