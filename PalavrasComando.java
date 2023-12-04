@@ -1,12 +1,16 @@
 /**
- * Esta classe eh parte da aplicacao "World of Zuul".
- * "World of Zuul" eh um jogo de aventura muito simples, baseado em texto.
- * 
+ * Essa eh a classe que administra as palavras de comando da aplicacao.
+ * "PPOOkemon" eh um jogo de aventura muito simples, baseado em texto e botoes.
+ * Usuarios podem caminhar em um cenario e travar batalhas com os treinadores
+ *
+ * Para jogar esse jogo, crie uma instancia dessa classe e chame o metodo
+ * "jogar".
+ *
  * Essa classe guarda uma enumeracao de todos os comandos conhecidos do
  * jogo. Ela eh usada no reconhecimento de comandos como eles sao digitados.
  *
- * @author Michael Kölling and David J. Barnes (traduzido por Julio Cesar Alves)
- * @version 2011.07.31 (2016.02.01)
+ * @author Danilo Chagas, Gustavo Pinto e Patrick Leite
+ * @version 2023.12.03
  */
 
 public class PalavrasComando {

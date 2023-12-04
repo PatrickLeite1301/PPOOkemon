@@ -1,3 +1,12 @@
+/**
+ * Classe TelaPrincipal - a tela principal do jogo.
+ * "PPOOkemon" eh um jogo de aventura muito simples, baseado em texto e botoes.
+ * Usuarios podem caminhar em um cenario e travar batalhas com os treinadores
+ *
+ *
+ * @author Danilo Chagas, Gustavo Pinto e Patrick Leite
+ * @version 2023.12.03
+ */
 
 import javax.swing.*;
 
@@ -23,6 +32,10 @@ public class TelaPrincipal {
     private JPanel painelInferior;
     private JLabel mapa;
 
+    /**
+     * Cria uma tela principal para o jogo
+     * inicializando todos os componentes
+     */
     public TelaPrincipal() {
         janela = new JFrame("PPOOkemon");
         campoComando = new JTextField();
@@ -36,6 +49,10 @@ public class TelaPrincipal {
         montarJanela();
     }
 
+    /**
+     * Exibe a tela principal do jogo
+     * @param jogo Jogo que sera exibido na tela
+     */
     public void exibir(Jogo jogo) {
         janela.setVisible(true);
         botaoConfirmar.addActionListener(new BotaoConfirmarOuvinte(jogo));
@@ -45,6 +62,9 @@ public class TelaPrincipal {
         ataque4.addActionListener(new BotaoAtaqueOuvinte(jogo));
     }
 
+    /**
+     * Fecha a tela principal do jogo
+     */
     private void montarJanela() {
         // Configurações da janela total
         janela.setSize(1200, 800);
@@ -93,6 +113,10 @@ public class TelaPrincipal {
         janela.setResizable(false);
     }
 
+    /**
+     * Configura a janela para exibir o campo
+     * de entrada de comandos
+     */
     public void janelaComandos() {
         // Painel de entrada de comandos
         JPanel painelEntrada = new JPanel();
@@ -107,7 +131,10 @@ public class TelaPrincipal {
         painelInferior.add(painelEntrada); // Painel inferior recebe o painel de entrada de comandos
     }
 
-    // Ideia de painel para batalha
+    /**
+     * Configura a janela para exibir os botões de ataques
+     * durante uma batalha
+     */
     public void janelaDeBatalha() {
 
         JPanel painelAtaques = new JPanel();
@@ -126,22 +153,43 @@ public class TelaPrincipal {
         painelInferior.add(painelBatalha);
     }
 
+    /**
+     * Configura a janela para exibir os ataques do pokemon
+     * durante uma batalha
+     * @param ata String com os ataques do pokemon
+     */
     public void definirAtaques(String ata) {
         ataques.setText(ata);
     }
 
+    /**
+     * Configura a janela para exibir o nome do pokemon
+     * @param poke String com o nome do pokemon
+     */
     public void definirPokemon(String poke) {
         pokemonJogador.setText(poke);
     }
 
+    /**
+     * Configura a janela para exibir o nome do pokemon oponente
+     * @param poke String com o nome do pokemon oponente
+     */
     public void definirPokemonOponente(String poke) {
         pokemonOponente.setText(poke);
     }
 
+    /**
+     * Configura a janela para exibir o texto de saida
+     * @param texto String com o texto de saida
+     */
     public void definirTexto(String texto) {
         saidaTela.setText(texto);
     }
 
+    /**
+     * Adiciona texto ao texto de saida
+     * @param texto String com o texto de saida
+     */
     public void adicionarTexto(String texto) {
         saidaTela.append("\n" + texto);
     }
@@ -153,6 +201,12 @@ public class TelaPrincipal {
             this.jogo = jogo;
         }
 
+        /**
+         * Trata os comandos do jogador
+         * @param act Ação do jogador
+         * que no caso é pressionar o botão de confirmar
+         * para enviar o comando
+         */
         @Override
         public void actionPerformed(ActionEvent act) {
             if (act.getSource() == botaoConfirmar) {
@@ -170,6 +224,11 @@ public class TelaPrincipal {
             this.jogo = jogo;
         }
 
+        /**
+         * Trata os ataques do jogador
+         * @param act Ação do jogador
+         * que no caso é pressionar um botão de ataque
+         */
         @Override
         public void actionPerformed(ActionEvent act) {
             int resultado = 0;

@@ -5,10 +5,9 @@ import personagem.Jogador;
 import personagem.Personagem;
 
 /**
- * Essa eh a classe principal da aplicacao "World of Zull".
- * "World of Zuul" eh um jogo de aventura muito simples, baseado em texto.
- * Usuarios podem caminhar em um cenario. E eh tudo! Ele realmente
- * precisa ser estendido para fazer algo interessante!
+ * Essa eh a classe principal da aplicacao "PPOOkemon".
+ * "PPOOkemon" eh um jogo de aventura muito simples, baseado em texto e botoes.
+ * Usuarios podem caminhar em um cenario e travar batalhas com os treinadores
  * 
  * Para jogar esse jogo, crie uma instancia dessa classe e chame o metodo
  * "jogar".
@@ -17,15 +16,15 @@ import personagem.Personagem;
  * ambientes, cria o analisador e comeca o jogo. Ela tambeme avalia e
  * executa os comandos que o analisador retorna.
  * 
- * @author Michael Kölling and David J. Barnes (traduzido por Julio Cesar Alves)
- * @version 2011.07.31 (2016.02.01)
+ * @author Danilo Chagas, Gustavo Pinto e Patrick Leite
+ * @version 2023.12.03
  */
 
 public class Jogo {
-    private Analisador analisador;
-    private Ambiente ambienteAtual;
-    private TelaPrincipal telaPrincipal;
-    private Personagem jogador;
+    private Analisador analisador; // analisa os comandos
+    private Ambiente ambienteAtual; // guarda o ambiente atual
+    private TelaPrincipal telaPrincipal; // tela principal do jogo
+    private Personagem jogador; // jogador do jogo
 
     /**
      * Cria o jogo e incializa seu mapa interno.
@@ -122,7 +121,9 @@ public class Jogo {
         ambienteAtual = entrada; // O jogo comeca do lado na entrada
     }
 
-    // Rotina principal do jogo. Fica em loop ate terminar o jogo.
+    /**
+     * Rotina principal do jogo. Fica em loop ate terminar o jogo.
+     */
     public void jogar() {
         imprimirBoasVindas();
         telaPrincipal.definirAtaques(jogador.getPokemon().dadosAtaques());
@@ -130,7 +131,9 @@ public class Jogo {
         telaPrincipal.exibir(this);
     }
 
-    // Mostra a mensagem de abertura na tela
+    /**
+     * Mostra a mensagem de abertura na tela
+     */
     private void imprimirBoasVindas() {
         telaPrincipal.definirTexto("Bem-vindo ao PPOOkémon!\n"
                 + "PPOOkémon eh um novo jogo de acao e aventura, baseado em jogos da franquia original.\n"
@@ -138,9 +141,11 @@ public class Jogo {
                 + ambienteAtual.getDescricaoCompleta());
     }
 
-    // Dado um comando, processa-o (ou seja, executa-o). @param comando é o Comando
-    // a ser processado. @return true se o comando finaliza o jogo.
-    // Precisa ajustar
+    /**
+     * Dado um comando, processa-o (ou seja, executa-o).
+     * @param comando o Comando a ser processado.
+     * @return true se o comando finaliza o jogo, false caso contrario.
+     */
     private boolean processarComando(Comando comando) {
         boolean querSair = false;
 
@@ -162,11 +167,10 @@ public class Jogo {
         return querSair;
     }
 
-    // Implementacoes dos comandos do usuario
     /**
-     * Printe informacoes de ajuda.
-     * Aqui nos imprimimos algo bobo e enigmatico e a lista de
-     * palavras de comando
+     * Printa informacoes de ajuda.
+     * Aqui nos imprimimos a descricao do local
+     *  e a lista de palavras de comando
      */
     private void imprimirAjuda() {
         telaPrincipal.definirTexto("Voce esta perdido. Voce caminha pelo ginásio.\n" + "Suas palavras de comando sao: "
@@ -199,10 +203,16 @@ public class Jogo {
         }
     }
 
+    /**
+     * Apresenta o ambiente atual na tela
+     */
     public void apresentarAmbiente() {
         telaPrincipal.definirTexto(ambienteAtual.getDescricaoCompleta());
     }
 
+    /**
+     * Inicia uma batalha com o treinador do ambiente atual
+     */
     private void iniciarBatalha() {
         Personagem oponente = ambienteAtual.getPersonagem();
         telaPrincipal.definirTexto("\n" + oponente.getNome() + " te desafia para uma batalha! \n"
@@ -227,6 +237,10 @@ public class Jogo {
         }
     }
 
+    /**
+     * Trata o comando digitado pelo usuario
+     * @param comandoTratado o comando digitado pelo usuario
+     */
     public void tratarComando(String comandoTratado) {
         boolean terminado = false;
         Comando comando = analisador.pegarComando(comandoTratado);
@@ -236,14 +250,26 @@ public class Jogo {
         }
     }
 
+    /**
+     * Retorna o oponente do jogador
+     * @return o oponente do jogador
+     */
     public Personagem getOponente(){
         return ambienteAtual.getPersonagem();
     }
 
+    /**
+     * Retorna o pokemon do jogador
+     * @return o pokemon do jogador
+     */
     public Pokemon getPokemonJogador() {
         return jogador.getPokemon();
     }
 
+    /**
+     * Retorna o pokemon do oponente
+     * @return o pokemon do oponente
+     */
     public Pokemon getPokemonOponente() {
         return ambienteAtual.getPersonagem().getPokemon();
     }

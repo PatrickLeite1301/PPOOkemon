@@ -1,36 +1,34 @@
+/**
+ * Classe Ambiente - um ambiente em um jogo do estilo.
+ * "PPOOkemon" eh um jogo de aventura muito simples, baseado em texto e botoes.
+ * Usuarios podem caminhar em um cenario e travar batalhas com os treinadores
+ *
+ * Um "Ambiente" representa uma localizacao no cenario do jogo. Ele eh
+ * conectado aos outros ambientes atraves de saidas. Um ambiente pode ou
+ * nao conter um treinador inimigo As saidas sao
+ * nomeadas como norte, sul, leste e oeste. Para cada direcao, o ambiente
+ * guarda uma referencia para o ambiente vizinho, ou null se nao ha
+ * saida naquela direcao.
+ *
+ * @author Patrick Leite
+ * @version 2023.12.03
+ */
+
 import personagem.Personagem;
 
 import java.util.HashMap;
 import java.util.Set;
 
-/**
- * Classe Ambiente - um ambiente em um jogo adventure.
- *
- * Esta classe eh parte da aplicacao "World of Zuul".
- * "World of Zuul" eh um jogo de aventura muito simples, baseado em texto.
- *
- * Um "Ambiente" representa uma localizacao no cenario do jogo. Ele eh
- * conectado aos outros ambientes atraves de saidas. As saidas sao
- * nomeadas como norte, sul, leste e oeste. Para cada direcao, o ambiente
- * guarda uma referencia para o ambiente vizinho, ou null se nao ha
- * saida naquela direcao.
- * 
- * @author Michael Kölling and David J. Barnes (traduzido por Julio Cesar Alves)
- * @version 2011.07.31 (2016.02.01)
- */
 public class Ambiente {
-    private String descricao;
-    private HashMap<String, Ambiente> saidas;
-    private Personagem treinadorInimigo;
+    private String descricao; // descricao curta deste ambiente
+    private HashMap<String, Ambiente> saidas; // saidas deste ambiente
+    private Personagem treinadorInimigo; // treinador inimigo que esta no ambiente
 
     /**
      * Cria um ambiente com a "descricao" passada. Inicialmente, ele
-     * nao tem saidas. "descricao" eh algo como "uma cozinha" ou
-     * "
-     * Create a room described "description". Initially, it has
-     * no exits. "description" is something like "a kitchen" or
-     * "um jardim aberto".
-     * 
+     * nao tem saidas. "descricao" eh algo como "uma sala vazia" ou
+     * algo assim.
+     *
      * @param descricao A descricao do ambiente.
      */
     public Ambiente(String descricao) {
@@ -38,7 +36,14 @@ public class Ambiente {
         saidas = new HashMap<>();
     }
 
-    // construtor pra quando tiver treinador inimigo
+    /**
+     * Cria um ambiente com a "descricao" passada. Inicialmente, ele
+     * nao tem saidas. "descricao" eh algo como "uma sala vazia" ou
+     * algo assim. O ambiente em questao possui um treinador inimigo
+     *
+     * @param descricao A descricao do ambiente.
+     * @param treinadorInimigo O treinador inimigo que esta no ambiente
+     */
     public Ambiente(String descricao, Personagem treinadorInimigo) {
         this.descricao = descricao;
         saidas = new HashMap<>();
@@ -60,7 +65,9 @@ public class Ambiente {
         return descricao + ".\n" + getExitsString();
     }
 
-    // pega uma descricao mais completa
+    /**
+     * @return A descricao completa do ambiente e suas saidas.
+     */
     public String getDescricaoCompleta() {
         return "Digite 'ajuda' se voce precisar de ajuda.\n" + descricao + ".\n" + getExitsString();
     }
@@ -91,10 +98,16 @@ public class Ambiente {
         return saidas.get(direcao);
     }
 
+    /**
+     * @return true se o ambiente possui um treinador inimigo
+     */
     public boolean temTreinador() {
         return treinadorInimigo != null;
     }
 
+    /**
+     * @return O treinador inimigo que esta no ambiente
+     */
     public Personagem getPersonagem() {
         return treinadorInimigo;
     }
