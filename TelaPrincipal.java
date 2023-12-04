@@ -3,8 +3,7 @@
  * "PPOOkemon" eh um jogo de aventura muito simples, baseado em texto e botoes.
  * Usuarios podem caminhar em um cenario e travar batalhas com os treinadores
  *
- *
- * @author Danilo Chagas, Gustavo Pinto e Patrick Leite
+ * @author Gustavo Pinto
  * @version 2023.12.03
  */
 
