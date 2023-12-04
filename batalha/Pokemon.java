@@ -50,6 +50,10 @@ public class Pokemon {
         return dados.toString();
     }
 
+    public String dadoAtaqueEspecifico(int pos){
+        return ataques.get(pos).getNome();
+    }
+
     public void atacar(int ataque, Pokemon pokemon) {
         if (ataque >= 1 && ataque <= 4) {
             pokemon.setVida(pokemon.getVida() - this.ataques.get(ataque).tentarAtacar());

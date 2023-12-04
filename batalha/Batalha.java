@@ -11,8 +11,9 @@ public class Batalha {
         if (checaVencedor(jogador, oponente) == 0) {
             executarTurnoOponente(oponente, jogador);
         } else {
-            recebePocao(jogador);
-            return checaVencedor(jogador, oponente);
+            if(recebePocao(jogador)){
+                return 3;
+            }
         }
         return checaVencedor(jogador, oponente);
     }
@@ -35,10 +36,12 @@ public class Batalha {
         return 0;
     }
 
-    private static void recebePocao(Pokemon jogador) {
+    private static boolean recebePocao(Pokemon jogador) {
         Random random = new Random();
         if (random.nextInt(2) == 0) {
             jogador.setVida(jogador.getVida() + 200);
+            return true;
         }
+        return false;
     }
 }

@@ -236,6 +236,10 @@ public class Jogo {
         }
     }
 
+    public Personagem getOponente(){
+        return ambienteAtual.getPersonagem();
+    }
+
     public Pokemon getPokemonJogador() {
         return jogador.getPokemon();
     }
