@@ -14,8 +14,6 @@
  * @version 2023.12.03
  */
 
-import personagem.Personagem;
-
 import java.util.HashMap;
 import java.util.Set;
 

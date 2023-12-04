@@ -8,9 +8,6 @@
  * @author Patrick Leite
  * @version 2023/12/03
  */
-package personagem;
-
-import batalha.Pokemon;
 
 public interface Personagem {
 

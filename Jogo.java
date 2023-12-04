@@ -1,9 +1,3 @@
-import batalha.Pokemon;
-import personagem.InimigoChefe;
-import personagem.InimigoComum;
-import personagem.Jogador;
-import personagem.Personagem;
-
 /**
  * Essa eh a classe principal da aplicacao "PPOOkemon".
  * "PPOOkemon" eh um jogo de aventura muito simples, baseado em texto e botoes.

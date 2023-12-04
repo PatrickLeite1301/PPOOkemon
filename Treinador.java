@@ -4,14 +4,11 @@
  * 
  * Essa eh a classe responsável por definir a criacao do tipo de treinadores,
  * treinador se refere a qualquer participante do jogo, tanto usuario quanto
- * npcs que estarão pelo mapa.
+ * npcs que estarao pelo mapa.
  * 
  * @author Patrick Leite
  * @version 2023/12/03
  */
-package personagem;
-
-import batalha.Pokemon;
 
 public abstract class Treinador implements Personagem {
 

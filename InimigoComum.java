@@ -2,14 +2,13 @@
  * "PPOOkemon" eh um jogo de aventura muito simples, baseado em texto e botoes.
  * Usuarios podem caminhar em um cenario e travar batalhas com os treinadores.
  * 
- * Essa eh a classe responsável por definir a criacao do tipo de personagem Comum,
+ * Essa eh a classe responsavel por definir a criacao do tipo de personagem Comum,
  * sua implementação tem como funcionalidade possibilitar a diferenca no status vida
- * e ter um objeto que possua pokemons que serão um meio de duelo.
+ * e ter um objeto que possua pokemons que serao um meio de duelo.
  * 
  * @author Patrick Leite
  * @version 2023/12/03
  */
-package personagem;
 
 public class InimigoComum extends Treinador {
     /**

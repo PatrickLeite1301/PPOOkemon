@@ -3,14 +3,13 @@
  * Usuarios podem caminhar em um cenario e travar batalhas com os treinadores.
  * 
  * Essa eh a classe responsavel por definir a criacao do tipo de personagem Chefe,
- * sua implementação tem como funcionalidade possibilitar a diferenca no status vida
+ * sua implementacao tem como funcionalidade possibilitar a diferenca no status vida
  * uma vez que eh um tipo de npc do jogo que possuira um pokemon com vida especial 
  * para suas batalhas.
  * 
  * @author Patrick Leite
  * @version 2023/12/03
  */
-package personagem;
 
 public class InimigoChefe extends Treinador {
     /**
@@ -22,7 +21,7 @@ public class InimigoChefe extends Treinador {
     }
 
     /**
-     * Estabelece o aumento de vida do pokemon do chefe baseado na vida base de todo
+     * Estabelece o aumento de vida do pokemon do chefe baseado na vida base de todos os
      * pokemon.
      * 
      * @return A vida final do pokemon do Chefe
