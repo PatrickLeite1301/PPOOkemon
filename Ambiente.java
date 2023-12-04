@@ -21,7 +21,6 @@ import java.util.Set;
 public class Ambiente {
     private String descricao;
     private HashMap<String, Ambiente> saidas;
-
     private Personagem treinadorInimigo;
 
     /**
